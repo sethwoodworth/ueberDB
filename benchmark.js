@@ -36,15 +36,11 @@ var randomStrings = [];
 var valueMap = {};
 
 //the default settings for benchmarking
-<<<<<<< HEAD
 var bench_settings = {};
 bench_settings["mysql"] = {"user":"etherpadlite", host: "localhost", "password":"etherpadlite", database: "etherpadlite"};
 bench_settings["postgres"] = {"user":"etherpadlite", host: "localhost", "password":"etherpadlite", database: "etherpadlite"};
 bench_settings["sqlite"] = {filename:"var/sqlite3.db"};
 bench_settings["dirty"] = {filename:"var/dirty.db"};
-=======
-var bench_settings = require("./defaultTestSettings.js");
->>>>>>> b633e280e7815dd41e13f32471f2f91d84f9d793
 
 if(process.argv.length == 3)
 {

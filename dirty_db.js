@@ -37,14 +37,11 @@ exports.database = function(settings)
 exports.database.prototype.init = function(callback)
 {
   this.db = new dirty(this.settings.filename);
-<<<<<<< HEAD
   callback();
-=======
   this.db.on('load', function(err)
   {
     callback();
   });
->>>>>>> b633e280e7815dd41e13f32471f2f91d84f9d793
 }
 
 exports.database.prototype.get = function (key, callback)
@@ -64,9 +61,6 @@ exports.database.prototype.remove = function (key, callback)
 
 exports.database.prototype.close = function(callback)
 {
-<<<<<<< HEAD
   callback();
-=======
   if(callback) callback();
->>>>>>> b633e280e7815dd41e13f32471f2f91d84f9d793
 }
