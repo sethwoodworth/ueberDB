@@ -45,6 +45,7 @@ exports.database = function(settings)
 
 exports.database.prototype.init = function(callback)
 {
+<<<<<<< HEAD
   var sql = "CREATE TABLE IF NOT EXISTS `store` ( " +
             "`key` VARCHAR( 100 ) NOT NULL , " + 
             "`value` LONGTEXT NOT NULL , " + 
@@ -52,6 +53,36 @@ exports.database.prototype.init = function(callback)
             ") ENGINE = INNODB;";
 
   this.db.query(sql,[],callback);
+=======
+  var sqlCreate = "CREATE TABLE IF NOT EXISTS `store` ( " +
+                  "`key` VARCHAR( 100 ) NOT NULL COLLATE latin1_bin, " + 
+                  "`value` LONGTEXT NOT NULL , " + 
+                  "PRIMARY KEY (  `key` ) " +
+                  ") ENGINE = INNODB;"; 
+                  
+  var sqlAlter  = "ALTER TABLE store MODIFY `key` VARCHAR(100) COLLATE latin1_bin;";
+
+  var db = this.db;
+
+  async.series([
+    function(callback)
+    {
+      db.query(sqlCreate,[],callback);
+    },
+    function(callback)
+    {
+      var t = setTimeout(function(){
+        console.log("we have to alter the mysql table, this may take a while...");
+      }, 3000);
+      
+      db.query(sqlAlter,[],function(err)
+      {
+        clearTimeout(t);
+        callback();
+      });
+    }
+  ], callback);
+>>>>>>> b633e280e7815dd41e13f32471f2f91d84f9d793
 }
 
 exports.database.prototype.get = function (key, callback)
